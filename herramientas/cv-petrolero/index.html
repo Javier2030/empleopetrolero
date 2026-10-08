@@ -82,7 +82,7 @@ function doc(L){
    exps+='<li><b>'+esc(en?c[1]:c[0])+'</b> — '+esc(emp)+' · '+esc(t.querySelector('.e-tal').value)+' ('+esc(t.querySelector('.e-fec').value)+')'+(t.querySelector('.e-log').value?'<br>'+esc(t.querySelector('.e-log').value):'')+'</li>'});
  let certs=''; document.querySelectorAll('.k-ok').forEach(k=>{if(k.checked){const i=+k.dataset.i; const ve=document.querySelector('.k-v[data-i="'+i+'"]').value.trim(); certs+='<li>'+esc(en?CERTS[i][1]:CERTS[i][0])+(ve?' — '+T.vence+' '+esc(ve):'')+'</li>'}});
  const res=v('c-res')||((en?car[1]:car[0])+' · '+(v('c-anios')||'0')+' '+T.yrs);
- return '<div class="cvdoc"><h2>'+esc(v('c-nom'))+'</h2><div>'+esc(en?car[1]:car[0])+' · '+esc(v('c-ciu'))+' · '+esc(v('c-tel'))+' · '+esc(v('c-mail'))+'</div>'+
+ return '<div class="cvdoc"><h2>'+esc(v('c-nom'))+'</h2><div>'+[en?car[1]:car[0],v('c-ciu'),v('c-tel'),v('c-mail')].filter(Boolean).map(esc).join(' · ')+'</div>'+
   '<h4>'+T.sum+'</h4><div>'+esc(res)+'</div>'+(exps?'<h4>'+T.exp+'</h4><ul>'+exps+'</ul>':'')+(certs?'<h4>'+T.cert+'</h4><ul>'+certs+'</ul>':'')+(v('c-form')?'<h4>'+T.edu+'</h4><div>'+esc(v('c-form'))+'</div>':'')+'</div>';
 }
 document.getElementById('c-gen').addEventListener('click',function(){
